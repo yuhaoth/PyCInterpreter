@@ -1,7 +1,4 @@
+*~
 *.pyc
-
-# VIM buffer
-.*.swp
-
-# for caching. see caching.py
-.cparser_caching
+*.o
+*.zip
