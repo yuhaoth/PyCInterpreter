@@ -552,10 +552,12 @@ class State(object):
             self.macros["i386"] = self.EmptyMacro
             self.macros["MAC_OS_X_VERSION_MIN_REQUIRED"] = Macro(rightside="1030")
 
-    def autoSetupGlobalIncludeWrappers(self):
+    def autoSetupGlobalIncludeWrappers(self,wrapper=None):
         if self._global_include_wrapper: return
-        from cinterpreter.wrappers import Wrapper
-        self._global_include_wrapper = Wrapper(self)
+        if wrapper is None:
+            from cinterpreter.wrappers import Wrapper
+            wrapper=Wrapper
+        self._global_include_wrapper = wrapper(self)
         self._global_include_wrapper.install()
 
     def incIncludeLineChar(self, fullfilename=None, inc=None, line=None, char=None, charMod=None):
